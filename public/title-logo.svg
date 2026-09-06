@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="url(#blueGrad)"/>
+  <!-- Base House / Left Peak -->
+  <path d="M 110 370 L 110 230 L 200 130 L 256 190 L 312 130 L 402 230 L 402 370" 
+        fill="none" 
+        stroke="url(#cyanGrad)" 
+        stroke-width="42" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+  <!-- Center M Peak -->
+  <path d="M 200 370 L 200 230 L 256 290 L 312 230 L 312 370" 
+        fill="none" 
+        stroke="#FFFFFF" 
+        stroke-width="36" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+</svg>
