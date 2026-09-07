@@ -193,6 +193,7 @@ const exploreLinks = [
   { label: 'About', href: '#about' },
   { label: 'Get It Sold', href: '#sold' },
   { label: 'Properties', href: '#properties' },
+  { label: 'Gallery', href: '#gallery' },
   { label: 'Services', href: '#services' },
   { label: 'Contact', href: '#contact' },
 ]
