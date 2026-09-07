@@ -31,10 +31,15 @@
           </p>
 
           <div class="hidden shrink-0 text-right sm:block">
-            <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">
+            <p
+              class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400"
+            >
               Gallery
             </p>
-            <p class="mt-1 text-2xl font-semibold tracking-tight text-slate-900">
+
+            <p
+              class="mt-1 text-2xl font-semibold tracking-tight text-slate-900"
+            >
               {{ currentIndex + 1 }}
               <span class="font-light text-slate-400">
                 / {{ galleryImages.length }}
@@ -51,17 +56,18 @@
           @touchstart="handleTouchStart"
           @touchend="handleTouchEnd"
         >
-          <div class="relative h-[28rem] overflow-hidden sm:h-[36rem] lg:h-[42rem]">
+          <div
+             class="relative h-[16rem] overflow-hidden bg-slate-100 sm:h-[20rem] lg:h-[24rem]"
+          >
             <img
               :src="currentImage?.src"
               :alt="currentImage?.alt"
-              class="absolute inset-0 h-full w-full object-cover"
-              :style="imageStyle"
+              class="absolute inset-0 h-full w-full object-contain"
               draggable="false"
             />
 
             <div
-              class="absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-transparent"
+              class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-transparent"
             ></div>
 
             <div
@@ -220,22 +226,13 @@ const galleryImages: GalleryImage[] = [
 
 const currentIndex = ref(0)
 const galleryContainer = ref<HTMLElement | null>(null)
-
 const isPaused = ref(false)
 const touchStartX = ref(0)
-const parallaxOffset = ref(0)
 
 let autoPlayTimer: ReturnType<typeof setInterval> | undefined
 
 const currentImage = computed(() => {
   return galleryImages[currentIndex.value]
-})
-
-const imageStyle = computed(() => {
-  return {
-    transform: `translate3d(0, ${parallaxOffset.value}px, 0) scale(1.06)`,
-    transition: 'transform 300ms ease-out',
-  }
 })
 
 function showNext() {
@@ -309,38 +306,11 @@ function handleTouchEnd(event: TouchEvent) {
   }
 }
 
-function handleScroll() {
-  if (!galleryContainer.value) {
-    return
-  }
-
-  const rect = galleryContainer.value.getBoundingClientRect()
-  const viewportHeight = window.innerHeight
-
-  if (rect.bottom < 0 || rect.top > viewportHeight) {
-    return
-  }
-
-  const centerOffset =
-    viewportHeight / 2 - (rect.top + rect.height / 2)
-
-  const maxOffset = 14
-
-  parallaxOffset.value = Math.max(
-    -maxOffset,
-    Math.min(maxOffset, centerOffset * 0.025),
-  )
-}
-
 onMounted(() => {
   startAutoPlay()
-  window.addEventListener('scroll', handleScroll, { passive: true })
-  handleScroll()
 })
 
 onBeforeUnmount(() => {
   stopAutoPlay()
-  window.removeEventListener('scroll', handleScroll)
 })
 </script>
-```
